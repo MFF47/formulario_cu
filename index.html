@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Caso de Uso</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+ <script>
+           function exportarPDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const table = document.getElementById("content");
+            html2canvas(table).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const imgWidth = 700; 
+                const pageHeight = 900;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                const heightLeft = imgHeight;
+
+                pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+                pdf.save("Caso_uso.pdf");
+        });
+    }
+        </script>
 <body>
     <div id="content">
+        <h1>Registro Caso de Uso</h1>
         <table border="1">
-            <h1>Registro de Caso de Uso</h1>
             <tr>
                 <th>Nombre del caso de uso:</th>
                 <td><input type="text" id="caso_uso" size="31"></td>
@@ -121,22 +139,7 @@
                 <td>Riesgo: <input type="text" size="75" id="riesgo"></td>
             </tr>
         </table>
-
-        <button id="generate">Generar PDF</button>
-        <script>
-            document.getElementById('generate').addEventListener('click', () => {
-                const { jsPDF } = window.jspdf;
-    
-                const doc = new jsPDF();
-    
-                doc.html(document.getElementById("content"), {
-                    callback: function (doc) {
-                        doc.save("registro_conferencia.pdf");
-                    },
-                    x: 10, 
-                    y: 10
-                });
-            });
-        </script>
-    </body>
-    </html>
+    </div>
+    <button onclick="exportarPDF()">Generar PDF</button>
+</body>
+</html>
