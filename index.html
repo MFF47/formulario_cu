@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Caso de Uso</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="content">
+        <table border="1">
+            <h1>Registro de Caso de Uso</h1>
+            <tr>
+                <th>Nombre del caso de uso:</th>
+                <td><input type="text" id="caso_uso" size="31"></td>
+                <th>ID Único:</th>
+                <td><input type="text" id="id_unico" size="10"></td>
+            </tr>
+            <tr>
+                <th>Área:</th>
+                <td colspan="3"><input type="text" size="58" id="area"></td>
+            </tr>
+            <tr>
+                <th>Actor(es):</th>
+                <td colspan="3"><input type="text" size="58" id="actores"></td>
+            </tr>
+            <tr>
+                <th>Interesados:</th>
+                <td colspan="3"><input type="text" size="58" id="interesados"></td>
+            </tr>
+            <tr>
+                <th>Nivel:</th>
+                <td colspan="3"><input type="text" size="58" id="nivel"></td>
+            </tr>
+            <tr>
+                <th>Descripción:</th>
+                <td colspan="3"><input type="text" size="58" id="descripcion"></td> </tr>
+            <tr>
+                <th>Evento desencadenador:</th>
+                <td colspan="3"><input type="text" size="58" id="e_desencadenador"></td>
+            </tr>
+            <tr>
+                <th>Tipo de desencadenador:</th>
+                <td colspan="3"><input type="text" size="58" id="t_desencadenador"></td>
+            </tr>
+        </table>
+
+        <table border="1">
+            <tr>
+                <th>Pasos realizados (ruta principal)</th>
+                <th>Información para los pasos</th>
+            </tr>
+            <tr>
+                <td>1.<input type="text" size="39" id="paso1"></td>
+                <td><input type="text" size="36" id="info_paso1"></td>
+            </tr>
+            <tr>
+                <td>2.<input type="text" size="39" id="paso2"></td>
+                <td><input type="text" size="36" id="info_paso2"></td>
+            </tr>
+            <tr>
+                <td>3.<input type="text" size="39" id="paso3"></td>
+                <td><input type="text" size="36" id="info_paso3"></td>
+            </tr>
+            <tr>
+                <td>4.<input type="text" size="39" id="paso4"></td>
+                <td><input type="text" size="36" id="info_paso4"></td>
+            </tr>
+            <tr>
+                <td>5.<input type="text" size="39" id="paso5"></td>
+                <td><input type="text" size="36" id="info_paso5"></td>
+            </tr>
+            <tr>
+                <td>6.<input type="text" size="39" id="paso6"></td>
+                <td><input type="text" size="36" id="info_paso6"></td>
+            </tr>
+            <tr>
+                <td>7.<input type="text" size="39" id="paso7"></td>
+                <td><input type="text" size="36" id="info_paso7"></td>
+            </tr>
+            <tr>
+                <td>8.<input type="text" size="39" id="paso8"></td>
+                <td><input type="text" size="36" id="info_paso8"></td>
+            </tr>
+            <tr>
+                <td>9.<input type="text" size="39" id="paso9"></td>
+                <td><input type="text" size="36" id="info_paso9"></td>
+            </tr>
+            <tr>
+                <td>10.<input type="text" size="38" id="paso10"></td>
+                <td><input type="text" size="36" id="info_paso10"></td>
+            </tr>
+        </table>
+
+        <table border="1">
+            <tr>
+                <td>Precondiciones: <input type="text" size="68" id="precondiciones"></td>
+            </tr>
+            <tr>
+                <td>Postcondiciones: <input type="text" size="67" id="postcondiciones"></td>
+            </tr>
+            <tr>
+                <td>Suposiciones: <input type="text" size="70" id="suposiciones"></td>
+            </tr>
+            <tr>
+                <td>Garantia de exito: <input type="text" size="66" id="garantia_exito"></td>
+            </tr>
+            <tr>
+                <td>Garantia minima: <input type="text" size="66" id="garantia_minima"></td>
+            </tr>
+            <tr>
+                <td>Requerimientos cumplidos: <input type="text" size="57" id="requerimientos_cumplidos"></td>
+            </tr>
+            <tr>
+                <td>Cuestiones pendientes: <input type="text" size="61" id="cuestiones_pendientes"></td>
+            </tr>
+            <tr>
+                <td>Prioridades: <input type="text" size="71" id="prioridades"></td>
+            </tr>
+            <tr>
+                <td>Riesgo: <input type="text" size="75" id="riesgo"></td>
+            </tr>
+        </table>
+
+        <button id="generate">Generar PDF</button>
+        <script>
+            document.getElementById('generate').addEventListener('click', () => {
+                const { jsPDF } = window.jspdf;
+    
+                const doc = new jsPDF();
+    
+                doc.html(document.getElementById("content"), {
+                    callback: function (doc) {
+                        doc.save("registro_conferencia.pdf");
+                    },
+                    x: 10, 
+                    y: 10
+                });
+            });
+        </script>
+    </body>
+    </html>
