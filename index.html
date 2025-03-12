@@ -13,13 +13,13 @@
             const pdf = new jsPDF();
             const table = document.getElementById("content");
             html2canvas(table).then(canvas => {
-                const imgData = canvas.toDataURL("image/png");
+                const imgData = canvas.toDataURL("image/jpg");
                 const imgWidth = 600; 
                 const pageHeight = 600;
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 const heightLeft = imgHeight;
 
-                pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+                pdf.addImage(imgData, "JPG", 0, 0, imgWidth, imgHeight);
                 pdf.save("Caso_uso.pdf");
         });
     }
@@ -140,6 +140,6 @@
             </tr>
         </table>
     </div>
-    <button onclick="exportarPDF()">Generar PDF</button>
+    <button onclick="PDFexport()">Generar PDF</button>
 </body>
 </html>
